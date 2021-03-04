@@ -16,41 +16,48 @@
 
 키보드, 헤어드라이기, 핸드폰 충전기의 플러그를 순서대로 멀티탭에 꽂은 다음 디지털 카메라 충전기 플러그를 꽂기 전에 핸드폰충전기 플러그를 빼는 것이 최적일 것이므로 플러그는 한 번만 빼면 된다. 
 '''
-def solve():
+def solve() :
     n, m = map(int, input().split())
     stuff = list(map(int, input().split()))
-    reverseStuff = list(reversed(stuff))
     multitab = []
-    for i in range(n):
+    for i in range(n) :
         multitab.append(stuff[i])
-    greedy(n, m, multitab, stuff, reverseStuff)  
+    checkUse(n, m, multitab, stuff)
     
 # 3구 멀티탭 / 사용할 stuff 1 2 3 4 2 5 2 1 4 2 3 1 5
 #  234 / 254 / 214 / 214에서 3을 꼽아야하는데 기존 로직은 1을 뽑으라고 함. 그러면 일을 또 해야하므로 기존 로직을 뒤집어야함     
-def greedy(n, m, multitab, stuff, reverseStuff):
+def checkUse(n, m, multitab, stuff) :
     result = 0
-    for i in range(m): # stuff 순서대로 멀티탭에 꼽기
-        for ii in range(len(multitab)): # stuff가 이미 multitab에 있는지 확인
+    for i in range(m) : # stuff 순서대로 멀티탭에 꼽기
+        for ii in range(len(multitab)) : # stuff가 이미 multitab에 있는지 확인
             if stuff[i] == multitab[ii] : # 이미 꼽혀있다면 아무것도 하지 않음
-                pass
-            
-            else : # 꼽혀있지 않다면 기존 것을 제거하고 새로 꼽음
-                if m - i > n : # 나중에 쓰일 stuff부터 제거하고 꼽기
-                    for iii in range(len(reverseStuff)):
-                        if reverseStuff[iii] != multitab[ii] :
-                            continue
-                        else :
-                            multitab[ii] = stuff[i]
-                            result += 1
-                            break
-                else : # 남은 stuff의 갯수가 multitab의 수보다 작으면 비교 방식이 바뀜
-                    for iii in range(len(reverseStuff)):
-                        if reverseStuff[iii] == multitab[ii] :
-                            pass
-                        else :
-                            multitab[ii] = stuff[i]
-                            result += 1
-                            break
+                break
+            elif stuff[i] != multitab[ii] and multitab[ii] != multitab[len(multitab)-1] : # 꼽혀있지 않다면 multitab의 끝까지 계속 확인함
+                continue
+            elif stuff[i] != multitab[ii] and multitab[ii] == multitab[len(multitab)-1] : # 끝까지 확인했으나 꼽혀있지 않음
+                new_list = stuff[i+1:]
+                cklist = makeCklist(new_list) 
+                changeStuff(stuff[i], multitab, cklist)
+                result += 1
+
     print(result)
-    
+                
+           
+def changeStuff(stuff, multitab, cklist) : # 새 리스트와 비교해서 나중에 쓰일 것 먼저 제거하기
+    for ii in range(len(multitab)) :
+        for iii in range(len(cklist)) :
+            if cklist[iii] == multitab[ii] :
+                multitab[ii] = stuff
+                break  
+        if multitab[ii] == stuff :
+            break
+        
+def makeCklist(new_list) : # 중복되지않게 list를 만들어서 기존 멀티탭과 비교
+    alist = []
+    for v in new_list :
+        if v not in new_list:
+            alist.append(v)
+    cklist = list(reversed(alist))
+    return cklist
+
 solve()
