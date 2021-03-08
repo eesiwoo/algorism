@@ -26,6 +26,7 @@
       다이나믹 프로그래밍
       <ul>
         <li><a href="https://www.acmicpc.net/problem/2748">baekjoon-2748 : 피보나치의 수 2</a> / 2021.03.02</li>
+        <li><a href="https://www.acmicpc.net/problem/1149">baekjoon-1149 : RGB거리</a> / 2021.03.08</li>
       </ul>
     </li>
     <li>
