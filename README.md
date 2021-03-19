@@ -45,7 +45,7 @@
         <li><a href="https://www.acmicpc.net/problem/2442">baekjoon-2442 : 별 찍기 - 5</a> / 2021.03.16</li>
         <li><a href="https://www.acmicpc.net/problem/2443">baekjoon-2443 : 별 찍기 - 6</a> / 2021.03.17</li>
         <li><a href="https://www.acmicpc.net/problem/2444">baekjoon-2444 : 별 찍기 - 7</a> / 2021.03.18</li>
-        <li><a href="https://www.acmicpc.net/problem/2445">baekjoon-2445 : 별 찍기 - 8</a> / 2021.03.19 / 별 찍기를 풀게 </li>
+        <li><a href="https://www.acmicpc.net/problem/2445">baekjoon-2445 : 별 찍기 - 8</a> / 2021.03.19 / 별 찍기를 풀게 된 이유</li>
       </ul>
     </li>
   
